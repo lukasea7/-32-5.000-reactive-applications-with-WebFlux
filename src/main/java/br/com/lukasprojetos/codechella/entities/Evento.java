@@ -11,7 +11,7 @@ public class Evento {
     private Long id;
     private TipoEvento tipo;
     private String nome;
-    private LocalDate date;
+    private LocalDate data;
     private String descricao;
 
     public Long getId() {
@@ -38,12 +38,12 @@ public class Evento {
         this.nome = nome;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDate getData() {
+        return data;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setData(LocalDate data) {
+        this.data = data;
     }
 
     public String getDescricao() {
@@ -52,5 +52,8 @@ public class Evento {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public void setDate(LocalDate data) {
     }
 }
