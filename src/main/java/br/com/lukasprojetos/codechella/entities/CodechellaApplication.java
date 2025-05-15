@@ -1,4 +1,4 @@
-package br.com.lukasprojetos.codechella;
+package br.com.lukasprojetos.codechella.entities;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

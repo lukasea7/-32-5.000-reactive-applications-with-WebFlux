@@ -1,5 +1,7 @@
-package br.com.lukasprojetos.codechella;
+package br.com.lukasprojetos.codechella.controllers;
 
+import br.com.lukasprojetos.codechella.dto.EventoDto;
+import br.com.lukasprojetos.codechella.service.EventoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,11 +13,11 @@ import reactor.core.publisher.Flux;
 @RequestMapping("/eventos")
 public class EventoController {
     @Autowired
-    private EventoRepository repositorio;
+    private EventoService service;
 
     @GetMapping(produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-    public Flux<Evento> obterTodos(){
-        return repositorio.findAll();
+    public Flux<EventoDto> obterTodos(){
+        return service.obterTodos();
     }
 
 }

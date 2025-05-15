@@ -1,4 +1,4 @@
-package br.com.lukasprojetos.codechella;
+package br.com.lukasprojetos.codechella.entities;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
