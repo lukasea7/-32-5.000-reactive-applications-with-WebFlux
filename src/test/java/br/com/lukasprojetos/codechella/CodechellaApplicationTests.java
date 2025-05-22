@@ -22,7 +22,7 @@ class CodechellaApplicationTests {
 
 	@Test
 	void cadastraNovoEvento() {
-		EventoDto dto = new EventoDto(null, TipoEvento.SHOW, "Kiss",
+		EventoDto dto = new EventoDto(12l, TipoEvento.SHOW, "Kiss",
 				LocalDate.parse("2025-01-01"),"Show da banda mais quente do mundo Kiss");
 
 		webTestClient.post().uri("/eventos").bodyValue(dto)
@@ -35,6 +35,25 @@ class CodechellaApplicationTests {
 					assertEquals(dto.nome(),response.nome());
 					assertEquals(dto.data(),response.data());
 					assertEquals(dto.descricao(),response.descricao());
+				});
+	}
+
+	@Test
+	void buscarEvento() {
+		EventoDto dto = new EventoDto(13l, TipoEvento.SHOW, "The Weeknd",
+				LocalDate.parse("2025-11-02"),"De volta ao Brasil, Bruno promete entregar o maior e melhor show de sua carreira na turnê This is Mars");
+
+		webTestClient.get().uri("/eventos")
+				.exchange()
+				.expectStatus().is2xxSuccessful()
+				.expectBodyList(EventoDto.class)
+				.value(response ->{
+					EventoDto eventoResponse = response.get(12);
+					assertEquals(dto.id(),eventoResponse.id());
+					assertEquals(dto.tipo(),eventoResponse.tipo());
+					assertEquals(dto.nome(),eventoResponse.nome());
+					assertEquals(dto.data(),eventoResponse.data());
+					assertEquals(dto.descricao(),eventoResponse.descricao());
 				});
 	}
 
