@@ -1,6 +1,7 @@
 package br.com.lukasprojetos.codechella.service;
 
 
+import br.com.lukasprojetos.codechella.api.translation.TraducaoDeTextos;
 import br.com.lukasprojetos.codechella.dto.EventoDto;
 import br.com.lukasprojetos.codechella.entities.TipoEvento;
 import br.com.lukasprojetos.codechella.repositories.EventoRepository;
@@ -55,5 +56,12 @@ public class EventoService {
         TipoEvento tipoEvento = TipoEvento.valueOf(tipo.toUpperCase());
         return repositorio.findByTipo(tipoEvento)
                 .map(EventoDto::toDto);
+    }
+
+    public Mono<String> obterTraducao(Long id, String idioma) {
+        return repositorio.findById(id)
+                .flatMap(e -> TraducaoDeTextos.obterTraducao(e.getDescricao(), idioma) );
+
+
     }
 }
