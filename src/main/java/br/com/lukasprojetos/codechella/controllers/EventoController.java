@@ -2,6 +2,7 @@ package br.com.lukasprojetos.codechella.controllers;
 
 import br.com.lukasprojetos.codechella.dto.EventoDto;
 import br.com.lukasprojetos.codechella.service.EventoService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
@@ -52,6 +53,7 @@ public class EventoController {
 
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public Mono<EventoDto> cadastrar(@RequestBody EventoDto dto) {
         return servico.cadastrar(dto)
         .doOnSuccess(e -> eventoSink.tryEmitNext(e));
